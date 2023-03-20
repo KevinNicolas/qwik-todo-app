@@ -1,0 +1,36 @@
+.create-task-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2ch;
+  padding: 0 2ch;
+  width: 100%;
+  height: 35px;
+  background: rgba(100 100 100 /0.1);
+  border-radius: 5px;
+}
+
+/* INPUT */
+.text-input {
+  background: none;
+  width: 100%;
+  height: 100%;
+  font-size: 0.7em;
+}
+
+/* BUTTON */
+.button {
+  padding-top: 4px;
+  background: none;
+  color: #aaa8;
+  display: none;
+}
+
+.button:hover {
+  color: #eee;
+}
+
+.create-task-container:hover .button,
+.text-input:focus + .button {
+  display: inline-block;
+}
