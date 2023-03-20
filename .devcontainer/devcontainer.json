@@ -1,0 +1,84 @@
+{
+  "name": "keep-tracking",
+  "build": {
+    // Sets the run context to one level up instead of the .devcontainer folder.
+    "context": "..",
+    // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+    "dockerfile": "../Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {}
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [3000],
+
+  "postCreateCommand": "ls /root/.ssh -l",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Languages
+        "mikestead.dotenv",
+        "EditorConfig.EditorConfig",
+        "dsznajder.es7-react-js-snippets",
+
+        // Libraries languages
+        // "styled-components.vscode-styled-components",
+        // "bradlc.vscode-tailwindcss"
+
+        // Utils
+        "usernamehw.errorlens",
+        "mkxml.vscode-filesize",
+        "eamodio.gitlens",
+        "oderwat.indent-rainbow",
+        "ExodiusStudios.comment-anchors",
+
+        // Linter
+        "dbaeumer.vscode-eslint",
+
+        // Formatter
+        "esbenp.prettier-vscode",
+
+        // Appearance
+        "miguelsolorio.fluent-icons",
+        "miguelsolorio.symbols"
+      ],
+      "settings": {
+        // Cursor
+        "editor.cursorBlinking": "smooth",
+
+        // Font
+        "editor.fontFamily": "Iosevka",
+        "editor.fontLigatures": true,
+        "editor.fontVariations": true,
+
+        // Formmating
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+
+        // Minimap
+        "editor.minimap.showSlider": "always",
+
+        // Files
+        "files.eol": "\n",
+        "editor.trimAutoWhitespace": true,
+
+        // Appearance
+        "workbench.productIconTheme": "fluent-icons",
+        "workbench.startupEditor": "none",
+        "workbench.iconTheme": "symbols",
+
+        // Explorer
+        "explorer.autoRevealExclude": {
+          "**/node_modules": true,
+          "**/bower_components": true
+        },
+        "explorer.compactFolders": false
+      }
+    }
+  }
+}
