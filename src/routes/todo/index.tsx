@@ -1,13 +1,15 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 
 import type { ITask } from "~/models";
 
-import { main, taskList } from "./todo.css";
+import styles from "./todo.css?inline";
 
 import Task from "./components/task/task";
 import CreateTask from "./components/create-task/create-task";
 
 export default component$(() => {
+  useStylesScoped$(styles);
+
   const tasks: ITask[] = [
     {
       title: "Primer prueba de una task",
@@ -18,8 +20,8 @@ export default component$(() => {
   ];
 
   return (
-    <main class={main}>
-      <div class={taskList}>
+    <main class="main">
+      <div class="task-list">
         {tasks.map((task) => (
           <Task key={task.creation_date.toISOString()} task={task} />
         ))}

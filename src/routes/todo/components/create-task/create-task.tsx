@@ -1,13 +1,14 @@
-import { $, component$, useSignal } from "@builder.io/qwik";
+import { $, component$, useSignal, useStylesScoped$ } from "@builder.io/qwik";
 import { Maximize2Icon } from "lucide-qwik";
 
 import type { ITask } from "~/models";
 
 import CreateTaskModal from "./create-task-modal";
 
-import styles from "./create-task.module.css";
+import styles from "./create-task.css?inline";
 
 export default component$(() => {
+  useStylesScoped$(styles);
   const modalIsOpen = useSignal<boolean>(false);
   const taskInfo = useSignal<Pick<ITask, "title">>({ title: "" });
 
@@ -20,11 +21,10 @@ export default component$(() => {
 
   return (
     <>
-      <div class={styles["create-task-container"]}>
+      <div class="create-task-container">
         <input type="checkbox" />
-        {/* FIXME - remove any type */}
-        <input class={styles["text-input"]} type="text" placeholder="New task..." onInput$={handleOnInput} />
-        <button class={styles.button} onClick$={() => (modalIsOpen.value = true)}>
+        <input class="text-input" type="text" placeholder="New task..." onInput$={handleOnInput} value={taskInfo.value.title} />
+        <button class="button" onClick$={() => (modalIsOpen.value = true)}>
           <Maximize2Icon size={18} />
         </button>
       </div>

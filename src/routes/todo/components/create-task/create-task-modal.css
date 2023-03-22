@@ -1,0 +1,70 @@
+.modal-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+form {
+  width: max(600px);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2ch;
+}
+
+/* FORM */
+
+form :is(input, textarea) {
+  background: transparent;
+  color: #111;
+}
+
+form .title {
+  width: calc(100% - 30px);
+  font-size: 1.5em;
+  border-bottom: 2px solid rgba(100 100 100 / 0.2);
+  transition: border-color 300ms ease-in-out;
+  padding: 0 0.5ch;
+  padding-bottom: 4px;
+}
+form .title:hover {
+  border-color: rgba(100 100 100 / 0.4);
+}
+form .title:focus {
+  border-color: rgba(100 100 100 / 1);
+}
+
+form .title:valid {
+  border-color: var(--primary-color);
+}
+
+form .description {
+  border: 1px solid #aaa8;
+  padding: 1ch;
+  width: 100%;
+  height: 200px;
+  resize: none;
+  transition: border-color 300ms ease-in-out;
+}
+form .description:hover {
+  border-color: #8888;
+}
+form .description:focus {
+  border-color: #888;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 3ch;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 2ch;
+}

@@ -1,16 +1,18 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 
 import type { ITask } from "~/models";
 
-import styles from "./task.module.css";
+import styles from "./task.css?inline";
 
 interface Props {
   task: ITask;
 }
 
 export default component$(({ task }: Props) => {
+  useStylesScoped$(styles);
+
   return (
-    <div class={styles["task-container"]}>
+    <div class="task-container">
       <input type="checkbox" checked={task.isDone} />
       <span>{task.title}</span>
     </div>

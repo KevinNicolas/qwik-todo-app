@@ -1,0 +1,30 @@
+.button {
+  padding: 1ch 2ch;
+  width: fit-content;
+  height: fit-content;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: all 200ms ease-in-out;
+}
+.button:hover {
+  transform: scale(1.05);
+}
+.button:active {
+  transform: scale(1);
+}
+
+.full {
+  color: var(--text-color);
+  background: var(--color);
+  border-color: var(--color);
+}
+
+.outline {
+  color: var(--color);
+  background: transparent;
+  border-color: var(--color);
+}
+
+.text {
+  color: var(--color);
+}

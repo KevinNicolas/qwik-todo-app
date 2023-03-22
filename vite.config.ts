@@ -6,6 +6,9 @@ import { vanillaExtractPlugin } from "styled-vanilla-extract/vite";
 
 export default defineConfig(() => {
   return {
+    server: {
+      port: 3010
+    },
     plugins: [qwikCity(), qwikVite(), tsconfigPaths(), vanillaExtractPlugin()],
     preview: {
       headers: {
