@@ -17,8 +17,12 @@ interface Props {
 export default component$(({ isOpen, taskInfo, resetTaskInfo }: Props) => {
   useStylesScoped$(styles);
 
+  const handleOnClickOutside = $(() => {
+    isOpen.value = false;
+  });
+
   return (
-    <Modal isOpen={isOpen.value}>
+    <Modal isOpen={isOpen.value} onClickOutside={handleOnClickOutside}>
       <div class="modal-container">
         <button class="close-button" onClick$={() => (isOpen.value = false)}>
           <XIcon color="#111" />
