@@ -28,7 +28,7 @@ export default component$(() => {
           <Maximize2Icon size={18} />
         </button>
       </div>
-      <CreateTaskModal isOpen={modalIsOpen} taskInfo={taskInfo} />
+      <CreateTaskModal isOpen={modalIsOpen} taskInfo={taskInfo} resetTaskInfo={$(() => {})} />
     </>
   );
 });
