@@ -8,6 +8,11 @@
   height: 35px;
   background: rgba(100 100 100 /0.1);
   border-radius: 5px;
+  border: 1px solid transparent;
+  transition: border 200ms ease-in-out;
+}
+.create-task-container:has(> .text-input:focus) {
+  border-color: rgba(100 100 100 / 0.4);
 }
 
 /* INPUT */

@@ -7,8 +7,8 @@ interface Props {
 }
 export const Modal = component$(({ isOpen }: Props) => {
   return (
-    <div class={styles.overlay} style={`display: ${isOpen ? "flex" : "none"}`}>
-      <div class={styles["modal-wrapper"]}>
+    <div id="modal-overlay" class={styles.overlay} style={`display: ${isOpen ? "flex" : "none"}`}>
+      <div id="modal-wrapper" class={styles["modal-wrapper"]}>
         <Slot />
       </div>
     </div>

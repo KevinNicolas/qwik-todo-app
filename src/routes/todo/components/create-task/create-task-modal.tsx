@@ -1,4 +1,4 @@
-import type { PropFunction, Signal } from "@builder.io/qwik";
+import type { Signal, PropFunction } from "@builder.io/qwik";
 import type { ITask } from "~/models";
 
 import { component$, useStylesScoped$, $ } from "@builder.io/qwik";
@@ -12,9 +12,10 @@ interface Props {
   isOpen: Signal<boolean>;
   taskInfo: Signal<Partial<ITask>>;
   resetTaskInfo: PropFunction<() => void>;
+  saveTask: PropFunction<() => void>;
 }
 
-export default component$(({ isOpen, taskInfo, resetTaskInfo }: Props) => {
+export default component$(({ isOpen, taskInfo, resetTaskInfo, saveTask }: Props) => {
   useStylesScoped$(styles);
 
   return (
@@ -53,7 +54,7 @@ export default component$(({ isOpen, taskInfo, resetTaskInfo }: Props) => {
           >
             Cancel
           </Button>
-          <Button onclick={$(() => {})} type="full">
+          <Button onclick={$(() => saveTask())} type="full">
             Save
           </Button>
         </div>
