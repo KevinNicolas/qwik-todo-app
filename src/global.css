@@ -1,5 +1,6 @@
 :root {
   --primary-color: #44f;
+  --primary-text-color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,4 +34,13 @@ button {
 
 input[type="checkbox"] {
   accent-color: var(--primary-color);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

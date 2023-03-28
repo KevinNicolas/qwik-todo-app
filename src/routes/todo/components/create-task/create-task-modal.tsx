@@ -1,16 +1,16 @@
 import type { PropFunction, Signal } from "@builder.io/qwik";
-import type { ITask } from "~/models";
 
 import { component$, useStylesScoped$, $ } from "@builder.io/qwik";
 import { XIcon } from "lucide-qwik";
 
 import { Modal, Button } from "~/components";
 
+import type { NewTask } from "./create-task.types";
 import styles from "./create-task-modal.css?inline";
 
 interface Props {
   isOpen: Signal<boolean>;
-  taskInfo: Signal<Partial<ITask>>;
+  taskInfo: NewTask;
   resetTaskInfo: PropFunction<() => void>;
 }
 
@@ -32,8 +32,8 @@ export default component$(({ isOpen, taskInfo, resetTaskInfo }: Props) => {
             class="title"
             type="text"
             placeholder="Task title..."
-            onInput$={(_, element) => (taskInfo.value = { ...taskInfo.value, title: element.value })}
-            value={taskInfo.value.title}
+            onInput$={(_, element) => (taskInfo.title = element.value)}
+            value={taskInfo.title}
             required
             pattern="^\w\S{2,}"
           />
@@ -43,8 +43,8 @@ export default component$(({ isOpen, taskInfo, resetTaskInfo }: Props) => {
             rows={10}
             class="description"
             placeholder="Description..."
-            onInput$={(_, element) => (taskInfo.value = { ...taskInfo.value, description: element.value })}
-            value={taskInfo.value.description}
+            onInput$={(_, element) => (taskInfo.description = element.value)}
+            value={taskInfo.description}
           ></textarea>
         </form>
         <div class="footer">

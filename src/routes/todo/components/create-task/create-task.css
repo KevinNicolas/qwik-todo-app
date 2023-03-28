@@ -24,6 +24,7 @@
   background: none;
   color: #aaa8;
   display: none;
+  animation: fade-in 200ms ease-in-out;
 }
 
 .button:hover {
@@ -33,4 +34,24 @@
 .create-task-container:hover .button,
 .text-input:focus + .button {
   display: inline-block;
+}
+
+/* SAVE-BUTTON */
+.save-button {
+  background: rgba(100 100 100 / 0.1);
+  color: rgba(100 100 100 / 0.3);
+  border-radius: 5px;
+  padding: 0.8ch 2ch;
+  transition: all 200ms ease-in-out;
+  pointer-events: none;
+  transition: all 200ms ease-in-out;
+}
+.save-button:active {
+  transform: scale(0.95);
+}
+
+.text-input:valid ~ button.save-button {
+  background: var(--primary-color);
+  color: var(--primary-text-color);
+  pointer-events: all;
 }
