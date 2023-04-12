@@ -6,6 +6,7 @@ import { XIcon } from "lucide-qwik";
 import { Modal, Button } from "~/components";
 
 import type { NewTask } from "./create-task.types";
+import { inputTitlePattern } from "./create-task.entity";
 import styles from "./create-task-modal.css?inline";
 
 interface Props {
@@ -35,7 +36,7 @@ export default component$(({ isOpen, taskInfo, resetTaskInfo }: Props) => {
             onInput$={(_, element) => (taskInfo.title = element.value)}
             value={taskInfo.title}
             required
-            pattern="^\w\S{2,}"
+            pattern={inputTitlePattern}
           />
           <textarea
             name="description"

@@ -6,6 +6,7 @@ import type { ITask } from "~/models";
 import storage from "~/storage";
 
 import type { NewTask } from "./create-task.types";
+import { inputTitlePattern } from "./create-task.entity";
 import CreateTaskModal from "./create-task-modal";
 import styles from "./create-task.css?inline";
 
@@ -38,7 +39,7 @@ export default component$(() => {
     <>
       <div class="create-task-container">
         <input type="checkbox" />
-        <input class="text-input" type="text" placeholder="New task..." pattern="^\w\S{2,}" required onInput$={handleTitleOnInput} value={taskInfo.title} />
+        <input class="text-input" type="text" placeholder="New task..." pattern={inputTitlePattern} required onInput$={handleTitleOnInput} value={taskInfo.title} />
         <button class="button" onClick$={() => (modalIsOpen.value = true)}>
           <Maximize2Icon size={18} />
         </button>
