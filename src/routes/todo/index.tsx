@@ -1,6 +1,7 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { $, component$, useSignal, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
 
-import type { ITask } from "~/models";
+import type { TaskModel } from "~/models";
+import { StorageService } from "~/services";
 
 import styles from "./todo.css?inline";
 
@@ -10,22 +11,27 @@ import CreateTask from "./components/create-task/create-task";
 export default component$(() => {
   useStylesScoped$(styles);
 
-  const tasks: ITask[] = [
-    {
-      title: "Primer prueba de una task",
-      description: "es la primer prueba de una task, se esta creando el componente",
-      isDone: false,
-      creation_date: new Date(),
-    },
-  ];
+  const tasks = useSignal<TaskModel[]>([]);
+
+  useVisibleTask$(async () => {
+    tasks.value = await new StorageService("sessionStorage").getAllTask();
+  });
+
+  const handleCreateTask = $(async (taskInfo: TaskModel) => {
+    console.info("Saving task", taskInfo);
+    if (taskInfo.title === "") return;
+
+    await new StorageService("sessionStorage").createTask({ ...taskInfo } as TaskModel);
+    // TODO[epic=feature]
+  });
 
   return (
     <main class="main">
       <div class="task-list">
-        {tasks.map((task) => (
-          <Task key={task.creation_date.toISOString()} task={task} />
+        {tasks.value.map((task) => (
+          <Task key={task.id} task={task} />
         ))}
-        <CreateTask />
+        <CreateTask onCreateTask={handleCreateTask} />
       </div>
     </main>
   );

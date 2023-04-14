@@ -3,15 +3,15 @@ import type { PropFunction, Signal } from "@builder.io/qwik";
 import { component$, useStylesScoped$, $ } from "@builder.io/qwik";
 import { XIcon } from "lucide-qwik";
 
+import type { TaskModel } from "~/models";
 import { Modal, Button } from "~/components";
 
-import type { NewTask } from "./create-task.types";
-import { inputTitlePattern } from "./create-task.entity";
+import { inputTitlePattern } from "./create-task.types";
 import styles from "./create-task-modal.css?inline";
 
 interface Props {
   isOpen: Signal<boolean>;
-  taskInfo: NewTask;
+  taskInfo: Omit<TaskModel, "id" | "creation_date">;
   resetTaskInfo: PropFunction<() => void>;
 }
 

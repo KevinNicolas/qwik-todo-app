@@ -1,20 +1,21 @@
+import type { PropFunction } from "@builder.io/qwik";
 import { $, component$, useSignal, useStore, useStylesScoped$ } from "@builder.io/qwik";
-import { v4 as uuid } from "uuid";
 import { Maximize2Icon } from "lucide-qwik";
 
-import type { ITask } from "~/models";
-import storage from "~/storage";
-
-import type { NewTask } from "./create-task.types";
-import { inputTitlePattern } from "./create-task.entity";
+import type { TaskModel } from "~/models";
+import { inputTitlePattern } from "./create-task.types";
 import CreateTaskModal from "./create-task-modal";
 import styles from "./create-task.css?inline";
 
-export default component$(() => {
+interface Props {
+  onCreateTask: PropFunction<(taskToCreate: TaskModel) => unknown>;
+}
+
+export default component$(({ onCreateTask }: Props) => {
   useStylesScoped$(styles);
   const modalIsOpen = useSignal<boolean>(false);
 
-  const taskInfo: NewTask = useStore({
+  const taskInfo: Omit<TaskModel, "id" | "creation_date"> = useStore({
     title: "",
     description: "",
     isDone: false,
@@ -24,15 +25,8 @@ export default component$(() => {
     taskInfo.title = element.value;
   });
 
-  const handleSave = $(async () => {
-    if (taskInfo.title === "") return;
-    const newTask: ITask = {
-      id: uuid(),
-      creation_date: new Date(),
-      ...taskInfo,
-    };
-    await storage.tasks.saveTask(newTask);
-    // TODO[epic=feature]
+  const handleSave = $(() => {
+    onCreateTask(taskInfo as TaskModel);
   });
 
   return (
